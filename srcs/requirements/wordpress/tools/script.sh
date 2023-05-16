@@ -3,13 +3,13 @@
 mkdir -p /var/run/mysqld
 touch /var/run/mysqld/mysqld.sock
 
-mkdir -p /var/www/html && cd /var/www/html
+mkdir -p /var/www/html/wordpress && cd /var/www/html/wordpress
 
 wp core download --allow-root
 
 #mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
 
-wp core config --dbname=WP_DB_NAME --dbuser=WP_USER --dbpass=WP_USER_PASSWORD --dbhost=172.25.0.2 --allow-root
+wp core config --dbname=WP_DB_NAME --dbuser=MYSQL_USER --dbpass=MYSQL_PASSWORD --allow-root
 
 wp core install --url=$WP_URL/ --title=$WP_TITLE --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_MAIL --skip-email --allow-root
 
@@ -45,4 +45,5 @@ wp redis enable --allow-root
 #wp plugin activate redis-cache --allow-root
 #wp redis enable --allow-root
 
-/usr/sbin/php-fpm7.3 --nodaemonize --allow-to-run-as-root
+#/usr/sbin/php-fpm7.3 --nodaemonize --allow-to-run-as-root
+/usr/sbin/php-fpm7.3 -F
