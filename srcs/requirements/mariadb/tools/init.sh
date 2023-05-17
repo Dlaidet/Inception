@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#service mysql start
+service mysql start
 
 mysql -u root -e "CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';"
 mysql -u root -e "CREATE DATABASE ${WP_DB_NAME};"

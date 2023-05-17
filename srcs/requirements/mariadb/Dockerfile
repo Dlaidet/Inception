@@ -12,15 +12,21 @@ RUN apt full-upgrade -y
 
 RUN apt install mariadb-server mariadb-client -y
 
-COPY ./tools/init.sh /script.sh
-RUN chmod +x script.sh
+#COPY ./tools/init.sh /home/script.sh
+COPY ./tools/script.sh /home/script.sh
+RUN chmod +x /home/script.sh
 
-COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/my.cnf
 
-RUN bash ./script.sh
+RUN mkdir -p /var/run/mysqld
+RUN chmod 777 /var/run/mysqld
+RUN touch /var/run/mysqld/mysqld.sock
 
+#RUN bash ./script.sh
+
+ENTRYPOINT [ "sh", "/home/script.sh" ]
 #CMD exec mysqld_safe
-CMD ["mysqld", "--bind-address=0.0.0.0"]
+#CMD ["mysqld", "--bind-address=0.0.0.0"]
 
 #RUN apt-get install -y dumb-init
 
