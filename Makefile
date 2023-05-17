@@ -7,6 +7,9 @@ ps:
 	docker-compose -f ./srcs/docker-compose.yml ps
 
 stop:
+	docker-compose -f ./srcs/docker-compose.yml stop
+
+down:
 	docker-compose -f ./srcs/docker-compose.yml down
 
 prune: clean
@@ -16,10 +19,12 @@ prune: clean
 	mkdir /home/dlaidet/data/mariadb
 	mkdir /home/dlaidet/data/wordpress
 
-clean: stop
+clean: down
 	docker rmi -f `docker images -qa`
 	docker volume rm `docker volume ls -q`
 
-re: clean compose
+fclean: prune
+
+re: prune compose
 
 .PHONY: all clean compose ps stop prune re

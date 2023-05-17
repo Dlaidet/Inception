@@ -21,7 +21,6 @@ services:
     volumes:
       - wordpress_data:/var/www/html
     environment:
-      - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
       - DB_HOSTNAME=${DB_HOSTNAME}
       - WP_DB_NAME=${WP_DB_NAME}
       - MYSQL_USER=${MYSQL_USER}
@@ -31,7 +30,6 @@ services:
       - WP_ADMIN_PASSWORD=${WP_ADMIN_PASSWORD}
       - WP_ADMIN_MAIL=${WP_ADMIN_MAIL}
       - WP_USER=${WP_USER}
-      - WP_USER_MAIL=${WP_USER_MAIL}
       - WP_USER_PASSWORD=${WP_USER_PASSWORD}
       - WP_URL=${WP_URL}
     depends_on:
@@ -46,7 +44,6 @@ services:
     volumes:
       - /home/dlaidet/data/mariadb:/docker-entrypoint-initdb.d/
     environment:
-      - MYSQL_ROOT_HOST=${MYSQL_ROOT_HOST}
       - DB_HOSTNAME=${DB_HOSTNAME}
       - WP_DB_NAME=${WP_DB_NAME}
       - MYSQL_USER=${MYSQL_USER}
@@ -63,10 +60,4 @@ volumes:
     driver_opts:
       type: none
       device: /home/dlaidet/data/wordpress
-      o: bind
-  database_data:
-    driver: local
-    driver_opts:
-      type: none
-      device: /home/dlaidet/data/mariadb
       o: bind
