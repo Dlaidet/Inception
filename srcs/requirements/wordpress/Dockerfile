@@ -3,7 +3,7 @@ FROM debian:buster
 RUN	apt update && apt install -y php7.3-fpm php7.3-mysql mariadb-client curl
 RUN rm -rf /var/lib/apt/list/*
 
-COPY /tools/index.php /var/www/html/index.php
+#COPY /tools/index.php /var/www/html/index.php
 
 COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/
 

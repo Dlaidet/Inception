@@ -22,3 +22,5 @@ RUN chmod 777 /var/run/mysqld
 RUN touch /var/run/mysqld/mysqld.sock
 
 ENTRYPOINT [ "sh", "/home/script.sh" ]
+
+CMD ["mysqld"]

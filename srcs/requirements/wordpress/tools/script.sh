@@ -11,6 +11,8 @@ wp core config --dbname=$WP_DB_NAME --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWOR
 
 wp core install --url=$WP_URL/ --title=$WP_TITLE --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_MAIL --skip-email --allow-root
 
+wp user create "$WP_USER" "$WP_USER@example.com" --role=subscriber --user_pass="$WP_USER_PASSWORD" --allow-root
+
 wp plugin install redis-cache --activate --allow-root
 wp redis enable --allow-root
 

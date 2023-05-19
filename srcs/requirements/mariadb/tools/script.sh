@@ -4,4 +4,5 @@ echo "GRANT ALL PRIVILEGES ON $WP_DB_NAME.* TO '$MYSQL_USER'@'%' ;" >> db.sql
 echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD' ;" >> db.sql
 echo "FLUSH PRIVILEGES ;" >> db.sql
 
-mysqld
+#mysqld
+exec "$@"
